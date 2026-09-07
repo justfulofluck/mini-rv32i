@@ -148,7 +148,6 @@ Mini-RV32I/
 ├── imm_gen.v         # Multi-format Immediate Sign-Extension Unit
 ├── control_unit.v    # Instruction Decoder & Main Control Logic
 ├── rv32i_top.v       # Top-Level Core Datapath Interconnect
-├── project.md        # Technical Architecture Reference
 └── README.md         # Professional Core Specification
 ```
 

@@ -1,0 +1,22 @@
+# Private planning & learning reference
+project.md
+
+# Simulation dumps & waveform traces
+*.vcd
+*.vpd
+*.fsdb
+*.wlf
+
+# Compilation & EDA tool outputs
+*.vvp
+*.out
+obj_dir/
+runs/
+*.log
+
+# Editor & OS generated files
+.vscode/
+*.swp
+*~
+.DS_Store
+Thumbs.db
