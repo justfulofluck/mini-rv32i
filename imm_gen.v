@@ -9,7 +9,7 @@ module imm_gen(
 
     // RISC-V standard opcode
     localparam OPCODE_I_ARITH = 7'b0010011; // addi, andi, or i, xori 
-    localparam OPCODE_I_LOAD = 7'b00000011; // lw, lh, lb
+    localparam OPCODE_I_LOAD = 7'b0000011; // lw, lh, lb
     localparam OPCODE_I_JALR = 7'b1100111; // JALR
     localparam OPCODE_S = 7'b0100011; // sw, sh, sb
     localparam OPCODE_B = 7'b1100011; // beq, ben, etc.
