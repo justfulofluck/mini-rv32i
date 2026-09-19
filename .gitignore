@@ -1,5 +1,6 @@
 # Private planning & learning reference
 project.md
+commands.md
 
 # Simulation dumps & waveform traces
 *.vcd
@@ -13,6 +14,20 @@ project.md
 obj_dir/
 runs/
 *.log
+
+# Synthesis, P&R & STA outputs (Yosys / OpenLane / OpenROAD)
+results/
+*.gds
+*.gds.gz
+*.def
+*.oasis
+*.lef
+*.lib
+*.db
+*.sdf
+*.saif
+*.syn
+*.f
 
 # Editor & OS generated files
 .vscode/

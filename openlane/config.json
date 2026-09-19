@@ -1,0 +1,24 @@
+{
+	"DESIGN_NAME": "top",
+	"PDK": "sky130A",
+	"STD_CELL_LIBRARY": "sky130_fd_sc_hd",
+	"VERILOG_FILES": [
+		"dir::src/top.v",
+		"dir::src/alu.v",
+		"dir::src/pc.v",
+		"dir::src/regfile.v",
+		"dir::src/imm_gen.v",
+		"dir::src/control_unit.v"
+	],
+	"CLOCK_PORT": "clk",
+	"CLOCK_PERIOD": 20.0,
+	"DESIGN_IS_CORE": true,
+	"FP_CORE_UTIL": 40,
+	"PL_TARGET_DENSITY": 0.45,
+	"SYNTH_STRATEGY": "AREA 0",
+	"ROUTING_CORES": 4,
+	"RUN_KLAYOUT": true,
+	"RUN_MAGIC": false,
+	"PRIMARY_SIGNOFF_TOOL": "klayout",
+	"MAGIC_DRC_USE_GDS": true
+}
