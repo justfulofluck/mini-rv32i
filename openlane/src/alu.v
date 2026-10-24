@@ -5,7 +5,9 @@ module alu (
     input wire [31:0] b,
     input wire [3:0] alu_ctrl,
     output reg [31:0] result,
-    output wire zero
+    output wire zero,
+    output wire lt,
+    output wire ltu
  );
 
 localparam ALU_ADD = 4'b0000;
@@ -30,11 +32,13 @@ always @(*) begin
         ALU_SRL: result = a >> b[4:0];
         ALU_SRA: result = $signed(a) >>> b[4:0];
         ALU_SLT: result = ($signed(a) < $signed(b)) ? 32'd1 : 32'd0;
-        ALU_SLTU: result = (a < b) ? 32'd1 : 32'd0; 
+        ALU_SLTU: result = (a < b) ? 32'd1 : 32'd0;
         default: result = 32'd0;
     endcase
 end
 
 assign zero = (result == 32'd0);
+assign lt = ($signed(a) < $signed(b));
+assign ltu = (a < b);
 
 endmodule

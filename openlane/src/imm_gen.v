@@ -8,7 +8,7 @@ module imm_gen(
     wire [6:0] opcode = instr[6:0];
 
     // RISC-V standard opcode
-    localparam OPCODE_I_ARITH = 7'b0010011; // addi, andi, or i, xori 
+    localparam OPCODE_I_ARITH = 7'b0010011; // addi, andi, or i, xori
     localparam OPCODE_I_LOAD = 7'b0000011; // lw, lh, lb
     localparam OPCODE_I_JALR = 7'b1100111; // JALR
     localparam OPCODE_S = 7'b0100011; // sw, sh, sb
@@ -30,7 +30,7 @@ module imm_gen(
             end
 
             OPCODE_B: begin
-                imm_out = {{20{instr[31]}}, instr[7], instr[11:7]};
+                imm_out = {{20{instr[31]}}, instr[7] ,instr[20:25], instr[11:8], 1'b0};
             end
 
             OPCODE_U_LUI,
