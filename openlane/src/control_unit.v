@@ -32,8 +32,20 @@ module control_unit (
     reg [1:0] alu_op;
 
     // --- 1. Main Decoder ---
-    always @(*) begin
-        // case (opcode)
+    always @(*) begin    
+        reg_write  = 1'b0;
+        alu_src    = 1'b0; // Register input
+        mem_read   = 1'b0;
+        mem_write  = 1'b0;
+        mem_to_reg = 1'b0; // ALU result
+        branch     = 1'b0;
+        jump       = 1'b0;
+        jump_src   = 1'b0;
+        link       = 1'b0;
+        lui        = 1'b0;
+        auipc      = 1'b0;
+        alu_op     = 2'b00; // R-type ALU op
+        case (opcode)
             OP_R_TYPE: begin
                 reg_write  = 1'b1;
                 alu_src    = 1'b0; // Register input
@@ -96,17 +108,42 @@ module control_unit (
 
             OP_BRANCH: begin
                 reg_write  = 1'b0;
-                alu_src    = 1'b0; // Compare registers
+                alu_src    = 1'b0;
                 mem_read   = 1'b0;
                 mem_write  = 1'b0;
                 mem_to_reg = 1'b0;
-                branch     = 1'b1; // Branch enable
+                branch     = 1'b1;
                 jump       = 1'b0;
                 jump_src   = 1'b0;
                 link       = 1'b0;
                 lui        = 1'b0;
                 auipc      = 1'b0;
-                alu_op     = 2'b01; // SUB for comparison
+                alu_op     = 2'b01; // SUB for Branch
+            end
+
+            OP_JAL: begin
+                reg_write = 1'b1;
+                jump      = 1'b1;
+                link      = 1'b1;
+            end
+
+            OP_JALR: begin
+                reg_write   = 1'b1;
+                alu_src     = 1'b1;
+                jump        = 1'b1;
+                jump_src    = 1'b1;
+                link        = 1'b1;
+                alu_op      = 2'b00; // rs1 + imm
+            end
+
+            OP_LUI: begin
+                reg_write   = 1'b1;
+                lui         = 1'b1;
+            end
+
+            OP_AUIPC: begin
+                reg_write   = 1'b1;
+                auipc       = 1'b1;
             end
 
             default: begin
@@ -134,10 +171,11 @@ module control_unit (
 
             2'b10: begin // R-Type
                 case (funct3)
-                    3'b000: alu_ctrl = (funct7[5]) ? 4'b0001 : 4'b0000; sub : add
+                    3'b000: alu_ctrl = (funct7[5]) ? 4'b0001 : 4'b0000; // sub : add
                     3'b001: alu_ctrl = 4'b1000; // SLL
                     3'b010: alu_ctrl = 4'b0110; // SLT
                     3'b011: alu_ctrl = 4'b0111; // SLTU
+                    3'b100: alu_ctrl = 4'b0101; // XOR
                     3'b101: alu_ctrl = (funct7[5]) ? 4'b1010 : 4'b1001; // SRL : SRL
                     3'b110: alu_ctrl = 4'b0100; // OR
                     3'b111: alu_ctrl = 4'b0011; // AND
@@ -151,7 +189,8 @@ module control_unit (
                     3'b001: alu_ctrl = 4'b1000; // SLLI
                     3'b010: alu_ctrl = 4'b0110; //SLTI
                     3'b011: alu_ctrl = 4'b0111; //SLTIU
-                    3'b100: alu_ctrl = (funct7[5]) ? 4'b1010 : 4'b1001; // SRAI : SRLI
+                    3'b100: alu_ctrl = 4'b0101; // XORI
+                    3'b101: alu_ctrl = (funct7[5]) ? 4'b1010 : 4'b1001; // SRAI : SRLI
                     3'b110: alu_ctrl = 4'b0100; // ORI
                     3'b111: alu_ctrl = 4'b0011; // ANDI
                     default: alu_ctrl = 4'b0000;
