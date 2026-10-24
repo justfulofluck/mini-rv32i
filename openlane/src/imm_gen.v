@@ -30,7 +30,7 @@ module imm_gen(
             end
 
             OPCODE_B: begin
-                imm_out = {{20{instr[31]}}, instr[7] ,instr[20:25], instr[11:8], 1'b0};
+                imm_out = {{20{instr[31]}}, instr[7], instr[30:25], instr[11:8], 1'b0};
             end
 
             OPCODE_U_LUI,
