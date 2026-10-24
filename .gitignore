@@ -1,6 +1,8 @@
 # Private planning & learning reference
 project.md
 commands.md
+run.md
+
 
 # Simulation dumps & waveform traces
 *.vcd
@@ -14,6 +16,8 @@ commands.md
 obj_dir/
 runs/
 *.log
+graphify-out/
+
 
 # Synthesis, P&R & STA outputs (Yosys / OpenLane / OpenROAD)
 results/
@@ -27,6 +31,10 @@ results/
 *.sdf
 *.saif
 *.syn
+*.spef
+*.rpt
+synth_out.v
+synth.ys
 *.f
 
 # Editor & OS generated files

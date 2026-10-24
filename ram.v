@@ -14,6 +14,7 @@ module ram(
     input wire [31:0] data_wdata,
     input wire mem_read,
     input wire mem_write,
+    input wire [3:0]  mem_write_mask,
     output wire [31:0] data_rdata
 );
 
@@ -34,10 +35,13 @@ module ram(
     // Data Read
     assign data_rdata = (mem_read) ? mem[data_addr[9:2]] : 32'd0;
 
-    // Data write (Synchtonous)
+    // Data write (Synchronous, byte-masked)
     always @(posedge clk) begin
         if (mem_write) begin
-            mem[data_addr [9:2]] <= data_wdata;
+            if (mem_write_mask[0]) mem[data_addr[9:2]][7:0]   <= data_wdata[7:0];
+            if (mem_write_mask[1]) mem[data_addr[9:2]][15:8]  <= data_wdata[15:8];
+            if (mem_write_mask[2]) mem[data_addr[9:2]][23:16] <= data_wdata[23:16];
+            if (mem_write_mask[3]) mem[data_addr[9:2]][31:24] <= data_wdata[31:24];
         end
     end
 
