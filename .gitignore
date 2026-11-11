@@ -55,3 +55,8 @@ synth.ys
 *~
 .DS_Store
 Thumbs.db
+
+# Graphviz and SVG raw schematic dumps
+*.dot
+*.svg
+
