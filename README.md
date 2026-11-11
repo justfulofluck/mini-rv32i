@@ -11,6 +11,31 @@ A synthesizable, single-cycle **32-bit RISC-V (RV32I)** processor core engineere
 
 ---
 
+## Visual Showcase
+
+<div align="center">
+
+### Architectural Block Diagram
+![RTL Architecture Block Diagram](images/block_diagram_top.png)
+
+---
+
+### Physical Silicon Layout (SkyWater 130nm GDSII in KLayout)
+| Full Processor Die Area & Power Mesh | Standard Cell & Interconnect Zoom |
+| :---: | :---: |
+| ![Full Processor Die Area](images/full-processor-die-area.png) | ![Microscopic Zoom-in View](images/microscopic-zoom-in-view.png) |
+
+---
+
+### Verification Signoff (UVM & GTKWave Waveforms)
+| UVM Scoreboard Pass (Cocotb + PyUVM) | GTKWave Timing Waveforms |
+| :---: | :---: |
+| ![UVM Pass Terminal](images/UVM-PASS-Terminal.png) | ![GTKWave Timing Waveforms](images/GTKWave-Timing-Waveforms.png) |
+
+</div>
+
+---
+
 ## Features
 
 - **Single-Cycle (1 CPI):** Deterministic execution of every base instruction in a single clock cycle.
@@ -94,6 +119,12 @@ Synthesized, placed, and routed using the automated **OpenLane RTL-to-GDSII** fl
 
 ```
 mini-rv32i/
+├── images/                         # Project diagrams, layout renders & test snapshots
+│   ├── block_diagram_top.png       # RTL Architecture block diagram
+│   ├── full-processor-die-area.png # KLayout full die GDSII layout
+│   ├── microscopic-zoom-in-view.png# Standard cell layout zoom
+│   ├── UVM-PASS-Terminal.png       # UVM verification test pass snapshot
+│   └── GTKWave-Timing-Waveforms.png# Simulation waveform timing trace
 ├── openlane/
 │   ├── config.json / config.tcl    # OpenLane ASIC & PDK configs
 │   ├── runs/mini-rv32i/            # Tapeout run artifacts, signoff reports & GDSII
