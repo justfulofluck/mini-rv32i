@@ -2,13 +2,26 @@
 project.md
 commands.md
 run.md
+notes.md
 
+# Python Virtual Environments & Packages
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Simulation dumps & waveform traces
+# Cocotb & Simulation artifacts
+sim_build/
+results.xml
 *.vcd
 *.vpd
 *.fsdb
 *.wlf
+
+# External cloned repositories (e.g., Spike ISS)
+riscv-isa-sim/
 
 # Compilation & EDA tool outputs
 *.vvp
@@ -17,7 +30,6 @@ obj_dir/
 runs/
 *.log
 graphify-out/
-
 
 # Synthesis, P&R & STA outputs (Yosys / OpenLane / OpenROAD)
 results/
