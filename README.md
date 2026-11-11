@@ -150,7 +150,6 @@ mini-rv32i/
 ├── tb_top.v                        # Full-system testbench
 ├── tb_*.v                          # Unit testbenches (alu, control, imm, regfile)
 ├── features.md                     # Technical specifications & roadmap
-├── linkedin.md                     # LinkedIn showcase posts & hiring tags
 └── README.md
 ```
 
